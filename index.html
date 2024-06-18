@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="opt">
+        <button id="clockButton" class="btn-top">Clock</button>
+        <button id="stopwatchButton" class="btn-top">StopWatch</button>
+    </div>
+    <div class="container" id="container">
+        <div class="time-container" id="time-container">
+            <div class="anaclock">
+                <div>
+                    <div class="info date"></div>
+                    <div class="info day"></div>
+                </div>
+                <div class="dot"></div>
+                <div>
+                    <div class="hour-hand"></div>
+                    <div class="minute-hand"></div>
+                    <div class="second-hand"></div>
+                </div>
+                <div>
+                    <span class="h3">3</span>
+                    <span class="h6">6</span>
+                    <span class="h9">9</span>
+                    <span class="h12">12</span>
+                </div>
+                <div class="diallines"></div>
+            </div>
+            <div class="clock"></div>
+            <div class="world-clock">
+                <select id="countrySelect">
+                    <option value="Asia/Kolkata" selected>India</option>
+                    <option value="Pacific/Midway">Midway Island, USA</option>
+                    <option value="Pacific/Honolulu">Honolulu, USA</option>
+                    <option value="America/Juneau">Juneau, USA</option>
+                    <option value="America/Los_Angeles">Los Angeles, USA</option>
+                    <option value="America/Tijuana">Tijuana, Mexico</option>
+                    <option value="America/Denver">Denver, USA</option>
+                    <option value="America/Phoenix">Phoenix, USA</option>
+                    <option value="America/Chihuahua">Chihuahua, Mexico</option>
+                    <option value="America/Chicago">Chicago, USA</option>
+                    <option value="America/Regina">Regina, Canada</option>
+                    <option value="America/Mexico_City">Mexico City, Mexico</option>
+                    <option value="America/New_York">New York, USA</option>
+                    <option value="America/Caracas">Caracas, Venezuela</option>
+                    <option value="America/Halifax">Halifax, Canada</option>
+                    <option value="America/Santiago">Santiago, Chile</option>
+                    <option value="America/St_Johns">St. John's, Canada</option>
+                    <option value="America/Sao_Paulo">Sao Paulo, Brazil</option>
+                    <option value="America/Argentina/Buenos_Aires">Buenos Aires, Argentina</option>
+                    <option value="America/Godthab">Godthab, Greenland</option>
+                    <option value="Atlantic/Azores">Azores, Portugal</option>
+                    <option value="Europe/London">London, UK</option>
+                    <option value="Europe/Dublin">Dublin, Ireland</option>
+                    <option value="Europe/Lisbon">Lisbon, Portugal</option>
+                    <option value="Europe/Berlin">Berlin, Germany</option>
+                    <option value="Europe/Amsterdam">Amsterdam, Netherlands</option>
+                    <option value="Europe/Paris">Paris, France</option>
+                    <option value="Europe/Rome">Rome, Italy</option>
+                    <option value="Europe/Madrid">Madrid, Spain</option>
+                    <option value="Europe/Prague">Prague, Czech Republic</option>
+                    <option value="Europe/Stockholm">Stockholm, Sweden</option>
+                    <option value="Europe/Athens">Athens, Greece</option>
+                    <option value="Europe/Istanbul">Istanbul, Turkey</option>
+                    <option value="Europe/Moscow">Moscow, Russia</option>
+                    <option value="Asia/Kolkata">Kolkata, India</option>
+                    <option value="Asia/Almaty">Almaty, Kazakhstan</option>
+                    <option value="Asia/Dhaka">Dhaka, Bangladesh</option>
+                    <option value="Asia/Yangon">Yangon, Myanmar</option>
+                    <option value="Asia/Bangkok">Bangkok, Thailand</option>
+                    <option value="Asia/Jakarta">Jakarta, Indonesia</option>
+                    <option value="Asia/Singapore">Singapore</option>
+                    <option value="Asia/Kuala_Lumpur">Kuala Lumpur, Malaysia</option>
+                    <option value="Asia/Manila">Manila, Philippines</option>
+                    <option value="Asia/Tokyo">Tokyo, Japan</option>
+                    <option value="Asia/Seoul">Seoul, South Korea</option>
+                    <option value="Asia/Shanghai">Shanghai, China</option>
+                    <option value="Asia/Hong_Kong">Hong Kong</option>
+                    <option value="Asia/Taipei">Taipei, Taiwan</option>
+                    <option value="Australia/Perth">Perth, Australia</option>
+                    <option value="Australia/Adelaide">Adelaide, Australia</option>
+                    <option value="Australia/Sydney">Sydney, Australia</option>
+                    <option value="Pacific/Guam">Guam, USA</option>
+                    <option value="Pacific/Auckland">Auckland, New Zealand</option>
+                    <option value="Pacific/Fiji">Fiji</option>
+                </select>
+                <div id="worldClockDisplay">Select a country to see the time</div>
+            </div>
+        </div>
+        <div class="stopwatch" id="stopwatch">
+            <div id="display">00:00:00</div>
+            <div class="btn">
+                <button id="startStopwatch" class="btn-top">Start</button>
+                <button id="lapStopwatch" class="btn-top">Lap</button>
+                <button id="resetStopwatch" class="btn-top">Reset</button>
+            </div>
+        </div>
+    </div>
+    <div class="laps" id="laps">
+        <table id="lapsTable">
+            <thead>
+                <tr>
+                    <th>Lap</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <button id="downloadButton">Download Laps Table</button>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+</html>
