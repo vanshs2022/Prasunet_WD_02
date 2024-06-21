@@ -334,21 +334,7 @@ span {
     background: rgba(255, 255, 255, 0.2);
 }
 
-#downloadButton{
-    background: linear-gradient(90deg, #ff8c00, #ff0080);
-    color: white;
-    font-weight: bold;
-    width: 250px;
-    height: 40px;
-    border-radius: 10px;
-    border: transparent;
-    margin-left: 20px;
-    cursor: pointer;
-    display: none;
-    position: absolute;
-    top: 30px;
-    right: 50px;
-}
+
 
 @media (max-width: 768px) {
     body {
@@ -396,16 +382,6 @@ span {
         display: none;
     }
 
-    #downloadButton {
-        width: 90vw;
-        padding: 10px;
-        font-size: 16px;
-        position: absolute;
-        top: 6vh;
-        left: 5vw;
-        margin-left: 0;
-        
-    }
 }
 
 

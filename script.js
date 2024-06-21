@@ -2,7 +2,6 @@ document.getElementById('clockButton').addEventListener('click', function() {
     document.querySelector('.time-container').style.transform = 'rotateY(0deg)';
     document.querySelector('.stopwatch').style.transform = 'rotateY(-180deg)';
     document.querySelector('.laps').style.display = 'none';
-    document.querySelector('#downloadButton').style.display = 'none';
 
 });
 
@@ -10,9 +9,6 @@ document.getElementById('stopwatchButton').addEventListener('click', function() 
     document.querySelector('.time-container').style.transform = 'rotateY(180deg)';
     document.querySelector('.stopwatch').style.transform = 'rotateY(0deg)';
     document.querySelector('.laps').style.display = 'block';
-    if(window.innerWidth>'768px'){
-        document.querySelector('#downloadButton').style.display = 'block';
-    }
 });
 
 
@@ -51,7 +47,7 @@ let startTime;
 function startStopwatch() {
     if (!isRunning) {
         isRunning = true;
-        startTime = Date.now();
+        startTime = Date.now() - (elapsedTime || 0); // Keep track of elapsed time
         stopwatch = setInterval(function () {
             let elapsedTime = Date.now() - startTime;
             let minutes = Math.floor((elapsedTime / 1000) / 60);
@@ -63,6 +59,7 @@ function startStopwatch() {
     } else {
         isRunning = false;
         clearInterval(stopwatch);
+        elapsedTime = Date.now() - startTime; // Store elapsed time
         document.getElementById('startStopwatch').innerHTML = 'Resume';
     }
 }
@@ -160,29 +157,4 @@ function clock() {
 
 setInterval("clock()", 100);
 
-document.addEventListener('DOMContentLoaded',(e)=>{
-    if (window.innerWidth<='768px'){
-        document.getElementById('downloadButton').style.display = 'none';
-    }
-});
-
-document.getElementById('downloadButton').addEventListener('click', function() {
-    var table = document.querySelector('.laps');
-    var tableContent = table.outerHTML;
-
-    console.log("download clicked");
-
-    var blob = new Blob([tableContent], { type: 'text/html' });
-
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'laps_table.html';
-
-    document.body.appendChild(a);
-    a.click();
-
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-});
 
