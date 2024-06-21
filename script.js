@@ -2,7 +2,6 @@ document.getElementById('clockButton').addEventListener('click', function() {
     document.querySelector('.time-container').style.transform = 'rotateY(0deg)';
     document.querySelector('.stopwatch').style.transform = 'rotateY(-180deg)';
     document.querySelector('.laps').style.display = 'none';
-
 });
 
 document.getElementById('stopwatchButton').addEventListener('click', function() {
@@ -10,7 +9,6 @@ document.getElementById('stopwatchButton').addEventListener('click', function() 
     document.querySelector('.stopwatch').style.transform = 'rotateY(0deg)';
     document.querySelector('.laps').style.display = 'block';
 });
-
 
 // Clock
 function updateClock() {
@@ -23,10 +21,12 @@ function updateClock() {
     document.querySelector('.clock').innerHTML = h + ":" + m + ":" + s;
     setTimeout(updateClock, 1000);
 }
+
 function checkTime(i) {
     if (i < 10) { i = "0" + i };
     return i;
 }
+
 updateClock();
 
 // World Clock
@@ -37,41 +37,44 @@ function updateWorldClock() {
     document.getElementById('worldClockDisplay').innerHTML = now;
     setTimeout(updateWorldClock, 1000);
 }
+
 document.getElementById('countrySelect').addEventListener('change', updateWorldClock);
 
 // Stopwatch
-let stopwatch;
 let isRunning = false;
-let startTime;
+let startTime = 0;
+let elapsedTime = 0;
+let stopwatch;
+let lapCounter = 1;
 
 function startStopwatch() {
     if (!isRunning) {
         isRunning = true;
-        startTime = Date.now() - (elapsedTime || 0); // Keep track of elapsed time
-        stopwatch = setInterval(function () {
-            let elapsedTime = Date.now() - startTime;
-            let minutes = Math.floor((elapsedTime / 1000) / 60);
-            let seconds = Math.floor((elapsedTime / 1000) % 60);
-            let milliseconds = Math.floor((elapsedTime % 1000) / 10);
-            document.getElementById('display').innerHTML = (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + ':' + (milliseconds < 10 ? '0' + milliseconds : milliseconds);
-        }, 10);
+        startTime = Date.now() - (elapsedTime || 0);
+        stopwatch = setInterval(updateStopwatch, 10);
         document.getElementById('startStopwatch').innerHTML = 'Pause';
     } else {
         isRunning = false;
         clearInterval(stopwatch);
-        elapsedTime = Date.now() - startTime; // Store elapsed time
         document.getElementById('startStopwatch').innerHTML = 'Resume';
     }
 }
 
-let lapCounter = 1;
+function updateStopwatch() {
+    let currentTime = Date.now();
+    elapsedTime = currentTime - startTime;
+    let minutes = Math.floor((elapsedTime / 1000) / 60);
+    let seconds = Math.floor((elapsedTime / 1000) % 60);
+    let milliseconds = Math.floor((elapsedTime % 1000) / 10);
+    document.getElementById('display').innerHTML = (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + ':' + (milliseconds < 10 ? '0' + milliseconds : milliseconds);
+}
 
 function lapStopwatch() {
     if (isRunning) {
-        let elapsedTime = Date.now() - startTime;
-        let minutes = Math.floor((elapsedTime / 1000) / 60);
-        let seconds = Math.floor((elapsedTime / 1000) % 60);
-        let milliseconds = Math.floor((elapsedTime % 1000) / 10);
+        let lapTime = elapsedTime;
+        let minutes = Math.floor((lapTime / 1000) / 60);
+        let seconds = Math.floor((lapTime / 1000) % 60);
+        let milliseconds = Math.floor((lapTime % 1000) / 10);
         let lapTableBody = document.querySelector('#lapsTable tbody');
         let row = lapTableBody.insertRow();
         let cell1 = row.insertCell(0);
@@ -83,28 +86,19 @@ function lapStopwatch() {
 }
 
 function resetStopwatch() {
-    clearInterval(stopwatch);
     isRunning = false;
+    clearInterval(stopwatch);
+    elapsedTime = 0;
     document.getElementById('startStopwatch').innerHTML = 'Start';
     document.getElementById('display').innerHTML = '00:00:00';
     let lapTableBody = document.querySelector('#lapsTable tbody');
-    while (lapTableBody.firstChild) {
-        lapTableBody.removeChild(lapTableBody.firstChild);
-    }
+    lapTableBody.innerHTML = '';
     lapCounter = 1;
 }
 
+document.getElementById('startStopwatch').addEventListener('click', startStopwatch);
 document.getElementById('lapStopwatch').addEventListener('click', lapStopwatch);
 document.getElementById('resetStopwatch').addEventListener('click', resetStopwatch);
-
-
-function attachEventListeners() {
-    document.getElementById('startStopwatch').addEventListener('click', startStopwatch);
-    document.getElementById('lapStopwatch').addEventListener('click', lapStopwatch);
-    document.getElementById('resetStopwatch').addEventListener('click', resetStopwatch);
-}
-
-attachEventListeners();
 
 var dialLines = document.getElementsByClassName('diallines');
 var clockEl = document.getElementsByClassName('anaclock')[0];
