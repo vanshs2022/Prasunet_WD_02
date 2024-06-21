@@ -349,6 +349,7 @@ span {
     top: 30px;
     right: 50px;
 }
+
 @media (max-width: 768px) {
     body {
         flex-direction: column;
@@ -368,25 +369,43 @@ span {
         font-size: 24px;
     }
 
-    
-
-
     .info {
         font-size: 16px;
     }
 
-    .btn {
-        flex-direction: column;
+    #opt {
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
     }
 
-    
+   .laps table{
+        margin: 0;
+   }
+
     .laps {
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
     }
 
     #downloadButton {
-        width: 100%;
+        width: 90vw;
         padding: 10px;
         font-size: 16px;
+        position: absolute;
+        top: 6vh;
+        left: 5vw;
+        margin-left: 0;
+        
     }
 }
+
+
